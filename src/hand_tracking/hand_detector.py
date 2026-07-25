@@ -26,12 +26,12 @@ class HandDetector:
 
     def detect(self, frame):
         rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        results = self.hands.process(rgb)
+        self.results = self.hands.process(rgb)
 
-        if results.multi_hand_landmarks:
+        if self.results.multi_hand_landmarks:
             for hand, handedness in zip(
-                results.multi_hand_landmarks,
-                results.multi_handedness
+                self.results.multi_hand_landmarks,
+                self.results.multi_handedness
             ):
                 self.drawer.draw_landmarks(
                     frame,

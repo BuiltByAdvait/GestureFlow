@@ -7,6 +7,7 @@ import time
 from src.camera.camera_manager import CameraManager
 from src.hand_tracking.hand_detector import HandDetector
 from src.mouse.air_mouse import AirMouse
+from src.gestures.gesture_recognizer import GestureRecognizer
 
 
 def main():
@@ -15,6 +16,7 @@ def main():
     camera = CameraManager()
     detector = HandDetector()
     air_mouse = AirMouse()
+    recognizer = GestureRecognizer()
 
     while True:
         success, frame = camera.get_frame()
@@ -32,6 +34,9 @@ def main():
 
             x = int(index_tip.x * w)
             y = int(index_tip.y * h)
+
+            if recognizer.is_pinch(hand, w, h):
+                print("PINCH DETECTED")
 
             air_mouse.move_cursor(x, y)
 

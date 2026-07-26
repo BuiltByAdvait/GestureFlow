@@ -1,3 +1,4 @@
+from src.gestures.gesture_utils import GestureUtils
 class GestureRecognizer:
     FINGER_TIPS = [4, 8, 12, 16, 20]
 
@@ -71,3 +72,21 @@ class GestureRecognizer:
             gesture = "FIVE"
 
         return gesture, fingers, total
+
+    def is_pinch(self, hand_landmarks, frame_width, frame_height):
+        """
+        Detects whether thumb and index finger are pinched.
+        Returns True if pinched, otherwise False.
+        """
+
+        thumb_tip = hand_landmarks.landmark[4]
+        index_tip = hand_landmarks.landmark[8]
+
+        distance = GestureUtils.pixel_distance(
+            thumb_tip,
+            index_tip,
+            frame_width,
+            frame_height,
+        )
+
+        return distance < 35

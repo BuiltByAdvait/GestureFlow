@@ -1,6 +1,7 @@
 import pyautogui
 import numpy as np
 
+pyautogui.PAUSE = 0
 
 class AirMouse:
     def __init__(self):
@@ -16,7 +17,11 @@ class AirMouse:
         self.frame_margin = 100
 
         # Smoothing
-        self.smoothening = 7
+        # Cursor Smoothing
+        self.smoothening = 5
+
+        # Ignore very tiny movements
+        self.dead_zone = 6
 
         # Previous Mouse Location
         self.prev_x = 0
@@ -27,7 +32,6 @@ class AirMouse:
         self.curr_y = 0
 
     def move_cursor(self, x, y):
-
         # Convert Camera Coordinates → Screen Coordinates
         screen_x = np.interp(
             x,
@@ -41,11 +45,58 @@ class AirMouse:
             (0, self.screen_height),
         )
 
-        # Smooth Movement
-        self.curr_x = self.prev_x + (screen_x - self.prev_x) / self.smoothening
-        self.curr_y = self.prev_y + (screen_y - self.prev_y) / self.smoothening
+        # -----------------------------
+        # Dead Zone
+        # -----------------------------
+        if (
+            abs(screen_x - self.prev_x) < self.dead_zone
+            and abs(screen_y - self.prev_y) < self.dead_zone
+        ):
+            return
 
-        pyautogui.moveTo(self.curr_x, self.curr_y)
+        # -----------------------------
+        # Dynamic Smoothing
+        # -----------------------------
+        distance = np.hypot(
+            screen_x - self.prev_x,
+            screen_y - self.prev_y,
+        )
+
+        if distance < 40:
+            smoothing = 8
+        elif distance < 100:
+            smoothing = 5
+        else:
+            smoothing = 3
+
+        self.curr_x = self.prev_x + (
+            screen_x - self.prev_x
+        ) / smoothing
+
+        self.curr_y = self.prev_y + (
+            screen_y - self.prev_y
+        ) / smoothing
+
+        # -----------------------------
+        # Keep cursor inside screen
+        # -----------------------------
+        self.curr_x = np.clip(
+            self.curr_x,
+            0,
+            self.screen_width - 1,
+        )
+
+        self.curr_y = np.clip(
+            self.curr_y,
+            0,
+            self.screen_height - 1,
+        )
+
+        pyautogui.moveTo(
+            self.curr_x,
+            self.curr_y,
+            duration = 0
+        )
 
         self.prev_x = self.curr_x
         self.prev_y = self.curr_y

@@ -1,78 +1,42 @@
+<div align="center">
+
 # ✋ GestureFlow
 
-> **An AI-powered Hand Gesture Recognition System that transforms natural hand movements into intuitive computer interactions using Computer Vision and Machine Learning.**
+### AI-Powered Hand Gesture Recognition & Air Mouse System built with Python
 
-<p align="center">
+Control your computer naturally using hand gestures with the power of Computer Vision, MediaPipe, and OpenCV.
 
-![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
-![MediaPipe](https://img.shields.io/badge/MediaPipe-Hand%20Tracking-FF6F00?style=for-the-badge)
-![NumPy](https://img.shields.io/badge/NumPy-Numerical%20Computing-013243?style=for-the-badge&logo=numpy)
-![Status](https://img.shields.io/badge/Status-Active%20Development-success?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python)
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green?style=for-the-badge&logo=opencv)
+![MediaPipe](https://img.shields.io/badge/MediaPipe-Hand%20Tracking-orange?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-macOS-black?style=for-the-badge&logo=apple)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
 
-</p>
+</div>
 
 ---
 
 # ✨ Features
 
-Current Features:
-
-- 🎥 Real-time webcam integration
-- ✋ MediaPipe-based hand landmark detection
-- 🎯 Accurate 21-point hand tracking
-- 🖱️ Air Mouse cursor control
-- ⚡ Optimized cursor movement
-- 🎚️ Dynamic cursor smoothing
-- 🚫 Dead-zone filtering to reduce cursor jitter
-- 📍 Screen coordinate mapping
-- 📊 Real-time FPS monitoring
-- 🤏 Thumb–Index pinch detection foundation
-- 🧩 Modular architecture for future gesture expansion
-
----
-
-# 📖 Project Overview
-
-GestureFlow is an AI-powered Computer Vision project that enables users to control their computer using natural hand gestures.
-
-Instead of relying on traditional input devices, GestureFlow uses MediaPipe to detect hand landmarks in real time and converts finger movements into cursor actions.
-
-The project is designed with a modular architecture, making it easy to expand with additional gesture-controlled interactions like clicking, dragging, scrolling, and virtual drawing.
-
-The goal is to build an efficient, scalable, and intuitive Human–Computer Interaction system while exploring practical applications of Artificial Intelligence and Computer Vision.
-
----
-
-# 🛠️ Tech Stack
-
-### Programming Language
-
-- Python
-
-### Computer Vision
-
-- OpenCV
-- MediaPipe
-
-### Libraries
-
-- NumPy
-- PyAutoGUI
-
-### Development Tools
-
-- VS Code
-- Git
-- GitHub
+- 🎥 Real-Time Webcam Integration
+- ✋ MediaPipe Hand Tracking
+- 🎯 21-Point Hand Landmark Detection
+- 🖱️ AI Powered Air Mouse
+- ⚡ Smooth Cursor Movement
+- 🎚️ Dynamic Cursor Smoothing
+- 🚫 Dead Zone Filtering
+- 📍 Screen Coordinate Mapping
+- 🤏 Thumb–Index Pinch Detection
+- 📊 FPS Monitoring
+- 🧩 Modular Project Structure
 
 ---
 
 # 📂 Project Structure
 
 ```text
-GestureFlow/
+GestureFlow
 │
 ├── src/
 │   ├── camera/
@@ -93,49 +57,66 @@ GestureFlow/
 │
 ├── main.py
 ├── requirements.txt
-└── README.md
+├── README.md
+└── .gitignore
 ```
+
+---
+
+# 🛠️ Built With
+
+- Python
+- OpenCV
+- MediaPipe
+- NumPy
+- PyAutoGUI
+- VS Code
+- Git
+- GitHub
 
 ---
 
 # 🚀 Installation
 
-## 1. Clone the Repository
+Clone the repository
 
 ```bash
 git clone https://github.com/BuiltByAdvait/GestureFlow.git
+```
+
+Move into the project
+
+```bash
 cd GestureFlow
 ```
 
----
-
-## 2. Create a Virtual Environment
-
-### Windows
-
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-```
-
-### macOS / Linux
+Create Virtual Environment
 
 ```bash
 python3 -m venv .venv
+```
+
+Activate
+
+macOS / Linux
+
+```bash
 source .venv/bin/activate
 ```
 
----
+Windows
 
-## 3. Install Dependencies
+```bash
+.venv\Scripts\activate
+```
+
+Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-## 4. Run GestureFlow
+Run
 
 ```bash
 python main.py
@@ -146,70 +127,51 @@ python main.py
 # 🎮 Usage
 
 1. Launch the application.
-2. Allow webcam access.
-3. Position your hand in front of the camera.
+2. Allow camera permission.
+3. Keep your hand inside the webcam frame.
 4. Move your index finger to control the mouse cursor.
-5. Use the Thumb–Index pinch gesture (currently under development) for future click interactions.
+5. Perform a Thumb–Index pinch gesture (click functionality under development).
 
 ---
 
-# 📸 Screenshots
+# 📸 Preview
 
-> Screenshots and demonstrations will be added as development progresses.
+> *(Project screenshots and demo GIFs will be added soon.)*
 
 ---
 
-# 🔮 Future Roadmap
+# 🔮 Future Improvements
 
-Planned Improvements:
-
-- 🖱️ Left Click using Thumb–Index Pinch
-- 🖱️ Right Click Gesture
-- ✊ Drag & Drop Support
-- 📜 Scroll Gesture
-- 🎯 Gesture Debouncing
-- 📏 Auto Cursor Calibration
-- 🎨 Air Canvas
-- ⚡ Performance Optimization
-- 🤖 Advanced Gesture Recognition
-- 🧠 Improved Gesture Stability
-- ✨ Enhanced User Experience
+- Left Click Gesture
+- Right Click Gesture
+- Drag & Drop
+- Scroll Gesture
+- Gesture Debouncing
+- Auto Cursor Calibration
+- Air Canvas
+- Multi Gesture Recognition
+- Performance Optimization
+- Improved Gesture Stability
 
 ---
 
 # 🤝 Contributing
 
-Contributions are welcome!
+Contributions are welcome.
 
-If you'd like to contribute:
-
-1. Fork the repository.
-2. Create a new feature branch.
-3. Commit your changes.
-4. Push your branch.
-5. Open a Pull Request.
-
-Please ensure your code follows clean coding practices and is well documented.
-
----
-
-# 📄 License
-
-This project is licensed under the **MIT License**.
-
-Feel free to use, modify, and distribute this project under the terms of the MIT License.
+Fork the repository and submit a Pull Request.
 
 ---
 
 # 👨‍💻 Author
 
-## Advait Bankar
+**Advait Bankar**
 
-**GitHub**
+GitHub
 
 https://github.com/BuiltByAdvait
 
-**LinkedIn**
+LinkedIn
 
 https://www.linkedin.com/in/advaitbankar
 
@@ -217,21 +179,16 @@ https://www.linkedin.com/in/advaitbankar
 
 # ⭐ Support
 
-If you enjoyed this project or found it useful:
+If you like this project,
 
-- ⭐ Star this repository
-- 🍴 Fork it
-- 💡 Suggest new features
-- 🤝 Contribute to the project
+⭐ Star the repository.
 
-Your support motivates future development and continuous improvements.
+It motivates future development.
 
 ---
 
-<p align="center">
+<div align="center">
 
-### 🚀 Building the Future of Human–Computer Interaction, One Gesture at a Time.
+Made with ❤️ by Advait
 
-Made with ❤️ by **Advait Bankar**
-
-</p>
+</div>

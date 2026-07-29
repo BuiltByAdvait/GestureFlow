@@ -12,6 +12,8 @@ class GestureRecognizer:
     ):
         landmarks = hand_landmarks.landmark
         fingers = []
+        self.is_pinching = False
+        self.click_triggered = False
 
         # Thumb
         if hand_label == "Right":
@@ -89,4 +91,17 @@ class GestureRecognizer:
             frame_height,
         )
 
-        return distance < 35
+        PINCH_THRESHOLD = 35
+        if distance < PINCH_THRESHOLD:
+
+            self.is_pinching = True
+
+            if not self.click_triggered:
+                self.click_triggered = True
+                return True
+
+        else:
+            self.is_pinching = False
+            self.click_triggered = False
+
+        return False

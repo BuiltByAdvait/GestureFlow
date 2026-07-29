@@ -36,7 +36,7 @@ def main():
             y = int(index_tip.y * h)
 
             if recognizer.is_pinch(hand, w, h):
-                print("PINCH DETECTED")
+                print("LEFT CLICK")
 
             air_mouse.move_cursor(x, y)
 

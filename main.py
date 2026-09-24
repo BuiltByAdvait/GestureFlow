@@ -8,6 +8,7 @@ from src.camera.camera_manager import CameraManager
 from src.hand_tracking.hand_detector import HandDetector
 from src.mouse.air_mouse import AirMouse
 from src.gestures.gesture_recognizer import GestureRecognizer
+from src.canvas.air_canvas import AirCanvas
 
 
 def main():
@@ -17,19 +18,48 @@ def main():
     detector = HandDetector()
     air_mouse = AirMouse()
     recognizer = GestureRecognizer()
+    air_canvas = AirCanvas()
 
     while True:
         success, frame = camera.get_frame()
+
         if not success:
             print("Failed to capture frame.")
             break
+
         frame = detector.detect(frame)
+
+        # ---------------- AIR CANVAS ---------------- #
+        if detector.results.multi_hand_landmarks:
+            hand = detector.results.multi_hand_landmarks[0]
+
+            gesture, fingers, total = recognizer.recognize(
+                hand,
+                detector.results.multi_handedness[0].classification[0].label,
+            )
+
+            frame = air_canvas.update(
+                frame,
+                hand,
+                gesture,
+                recognizer,
+            )
+
+        else:
+            frame = air_canvas.update(
+                frame,
+                None,
+                "UNKNOWN",
+                recognizer,
+            )
+
+        # -------------------------------------------- #
 
         # ---------------- AIR MOUSE ---------------- #
         if detector.results.multi_hand_landmarks:
             hand = detector.results.multi_hand_landmarks[0]
             index_tip = hand.landmark[8]
-            
+
             h, w, _ = frame.shape
 
             x = int(index_tip.x * w)
@@ -57,10 +87,12 @@ def main():
         )
 
         cv2.imshow("GestureFlow Webcam", frame)
+
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
 
     camera.release()
+
 
 if __name__ == "__main__":
     main()

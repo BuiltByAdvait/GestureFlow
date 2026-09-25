@@ -8,6 +8,7 @@ from src.camera.camera_manager import CameraManager
 from src.hand_tracking.hand_detector import HandDetector
 from src.mouse.air_mouse import AirMouse
 from src.gestures.gesture_recognizer import GestureRecognizer
+from src.canvas.air_canvas import AirCanvas
 
 
 def main():
@@ -17,6 +18,7 @@ def main():
     detector = HandDetector()
     air_mouse = AirMouse()
     recognizer = GestureRecognizer()
+    air_canvas = AirCanvas()
 
     while True:
         success, frame = camera.get_frame()
@@ -29,6 +31,12 @@ def main():
         if detector.results.multi_hand_landmarks:
 
             hand = detector.results.multi_hand_landmarks[0]
+
+            gesture, fingers, total = recognizer.recognize(
+                hand,
+                detector.results.multi_handedness[0].classification[0].label
+            )
+
             index_tip = hand.landmark[8]
             
             h, w, _ = frame.shape
@@ -52,6 +60,13 @@ def main():
             )
 
             click_action = recognizer.is_pinch(hand, w, h)
+
+            frame = air_canvas.update(
+                frame,
+                hand,
+                gesture,
+                recognizer.is_pinching
+            )
             
             right_click = recognizer.is_right_click(hand, w, h)
 

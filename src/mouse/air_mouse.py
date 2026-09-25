@@ -100,3 +100,26 @@ class AirMouse:
 
         self.prev_x = self.curr_x
         self.prev_y = self.curr_y
+
+    def left_click(self):
+        """ Performs a left mouse click."""
+        pyautogui.click()
+
+    def double_click(self):
+        """ Performs a double left mouse click. """
+        pyautogui.doubleClick(interval=0.1)
+
+    def right_click(self):
+        """
+        Performs a right mouse click.
+        """
+        pyautogui.rightClick()
+
+    def scroll(self, amount):
+        """
+            Scrolls the mouse wheel.
+
+            Positive amount -> scroll up
+            Negative amount -> scroll down
+        """
+        pyautogui.scroll(amount)
